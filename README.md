@@ -1,42 +1,77 @@
-# Cisco Umbrella – Sécurité DNS (Lab)
+# Sécurité DNS avec Cisco Umbrella
 
-## 📌 Présentation
-Ce projet présente la mise en œuvre d’une solution de sécurité DNS basée sur
-Cisco Umbrella afin de protéger les utilisateurs contre les domaines malveillants,
-le phishing et les malwares.
+![Cisco Umbrella](https://img.shields.io/badge/Solution-Cisco%20Umbrella-blue) ![DNS](https://img.shields.io/badge/Protocole-DNS-green) ![Statut](https://img.shields.io/badge/Statut-%C3%A0%20compl%C3%A9ter-yellow)
 
-Le lab s’appuie sur des cas d’usage réels en environnement entreprise.
+Ce projet présente, à ce stade de façon théorique, la mise en œuvre d'une protection DNS avec Cisco Umbrella, une solution de sécurité cloud de type Secure Internet Gateway (SIG). L'objectif est de bloquer les domaines malveillants et les tentatives de phishing dès la résolution DNS, avant même qu'une connexion ne soit établie avec le site visé.
 
-## 🎯 Objectifs
-- Comprendre la sécurité au niveau DNS
-- Déployer Cisco Umbrella comme passerelle de sécurité Internet
-- Configurer des politiques de filtrage et de protection
-- Tester et valider le blocage des menaces
+## Sommaire
 
-## 🏗 Architecture
-La solution repose sur la redirection des requêtes DNS vers le cloud Cisco Umbrella
-afin d’appliquer des politiques de sécurité centralisées.
+1. [Objectifs](#objectifs)
+2. [Présentation de Cisco Umbrella](#présentation-de-cisco-umbrella)
+3. [Architecture](#architecture)
+4. [Prérequis](#prérequis)
+5. [Déploiement](#déploiement)
+6. [Politiques de filtrage](#politiques-de-filtrage)
+7. [Scénarios de test prévus](#scénarios-de-test-prévus)
+8. [Compétences visées](#compétences-visées)
+9. [Avertissement](#avertissement)
+10. [Auteur](#auteur)
 
-📁 Voir `/02-architecture/architecture.md`
+## Objectifs
 
-## 🛠 Technologies utilisées
-- Cisco Umbrella
-- DNS
-- Sécurité Cloud
-- Politiques de sécurité réseau
+- Mettre en place une protection DNS avec Cisco Umbrella
+- Comprendre le fonctionnement d'un Secure Internet Gateway
+- Définir des politiques de sécurité adaptées à un environnement d'entreprise
+- Tester et valider le blocage de domaines malveillants
 
-## ✅ Résultats
-- Blocage des domaines malveillants
-- Visibilité en temps réel du trafic DNS
-- Application centralisée des politiques de sécurité
+## Présentation de Cisco Umbrella
 
-## 📚 Compétences mises en œuvre
-- Sécurité réseau
-- Sécurité DNS
-- Sécurité Cloud
-- Conception de politiques de sécurité
-- Documentation technique
+Cisco Umbrella est une solution de sécurité cloud qui agit au niveau de la résolution DNS. Chaque requête DNS d'un poste client est analysée avant qu'une connexion IP ne soit établie, ce qui permet de bloquer une menace de façon proactive, sans attendre qu'elle atteigne le poste.
 
-## 📸 Captures d’écran
-Voir le dossier `/captures-ecran`
+## Architecture
 
+1. Les postes clients génèrent des requêtes DNS
+2. Les requêtes sont envoyées vers les résolveurs Cisco Umbrella
+3. Umbrella analyse les domaines demandés
+4. Les domaines légitimes sont résolus normalement
+5. Les domaines identifiés comme malveillants sont bloqués et journalisés
+
+## Prérequis
+
+- Un compte Cisco Umbrella
+- Un accès Internet fonctionnel
+- Des droits administrateur sur la console Umbrella
+- La possibilité de configurer la résolution DNS du réseau testé
+
+## Déploiement
+
+Les serveurs DNS du réseau sont reconfigurés pour pointer vers les résolveurs Cisco Umbrella, ce qui permet l'inspection et le filtrage de l'ensemble du trafic DNS sortant.
+
+## Politiques de filtrage
+
+Les politiques de sécurité définies dans Umbrella visent à :
+
+- bloquer les domaines malveillants connus
+- empêcher l'accès aux sites de phishing
+- appliquer des règles de conformité propres à l'organisation
+
+## Scénarios de test prévus
+
+- Tentative d'accès à des domaines malveillants connus
+- Observation de la page de blocage affichée par Cisco Umbrella
+- Vérification des journaux de sécurité dans la console Umbrella
+
+## Compétences visées
+
+Sécurité réseau, sécurité DNS, sécurité cloud, conception de politiques de sécurité, documentation technique.
+
+## Avertissement
+
+Ce dépôt décrit la démarche et l'architecture d'un lab Cisco Umbrella, mais ne contient pas encore de captures d'écran ni de compte rendu de déploiement réel. Il sera complété avec les preuves de mise en œuvre (captures, journaux, résultats de test) dès qu'elles seront disponibles.
+
+## Auteur
+
+Hyppolyte Gbedo
+Licence Informatique, Université de Rennes 1
+Orienté SOC et cybersécurité
+GitHub [gbehyppolyte-sec](https://github.com/gbehyppolyte-sec)
